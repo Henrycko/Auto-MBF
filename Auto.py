@@ -123,10 +123,10 @@ def menu():
     global toket
     os.system('reset')
     try:
-        toket = open('cookie', 'r').read()
+        toket = open('login', 'r').read()
     except IOError:
         print '\x1b[32;1m{!} \x1b[31;1mToken not found'
-        os.system('rm -rf cookie')
+        os.system('rm -rf login')
         time.sleep(1)
         login()
 
