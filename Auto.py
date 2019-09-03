@@ -3,7 +3,7 @@
 """
 * Dilarang Menyalahgunakan Tools Ini :)
 * Author : Henrycko
-* Github : https://github.com/Henrycko
+* Github : https://github.com/LUTHFI
 -------------------------------------------------------
 * Name Tools : Auto MBF
 * Full Name  : Auto Multi-Bruteforce-Facebook
